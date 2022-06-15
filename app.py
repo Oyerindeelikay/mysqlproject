@@ -21,7 +21,7 @@ def login():
     rows = rows.fetchall()
     if len(rows) == 1:
         session["log"] = True
-        return redirect("/home")
+        return render_template("home.html")
     else:
         return redirect("/register")
 
@@ -70,5 +70,4 @@ def flagsample():
     return render_template("flag.html")
 
 if __name__=="__main__":
-    app.secret_key="1234567dailywebcoding"
     app.run()
