@@ -1,8 +1,6 @@
-from flask import Flask, request,render_template,redirect,flash, url_for, session,logging
+from flask import Flask, request,render_template,redirect, url_for, session,logging
 import os
 import sqlite3
-
-currentlocation = os.path.dirname(os.path.abspath(__file__))
 
 app = Flask(__name__)
 
@@ -15,7 +13,7 @@ def login():
     UN = request.form['Username']
     PW = request.form['Password']
 
-    sqlconnection = sqlite3.Connection(currentlocation + "\Login.db")
+    sqlconnection = sqlite3.Connection("Login.db")
     cursor = sqlconnection.cursor()
     query1 = "SELECT Username, Password From Users WHERE Username = '{un}' AND Password = '{pw}'".format(un = UN, pw = PW)
 
@@ -23,10 +21,8 @@ def login():
     rows = rows.fetchall()
     if len(rows) == 1:
         session["log"] = True
-        flash("Successfully Logged In","success")
         return redirect("/home")
     else:
-        flash("Not Registered or Incorrect Password","danger")
         return redirect("/register")
 
 @app.route("/home")
@@ -40,7 +36,7 @@ def photo():
 @app.route("/logout")
 def logout():
     session.clear()
-    flash("You are now logged out", "success")
+    
     return redirect("/")
 
 
@@ -59,10 +55,10 @@ def register():
             cursor.execute(query1)
             sqlconnection.commit()
             session["log"] = True
-            flash("Successfully Registered.","success")
+            
             return redirect("/")
         else:
-            flash("password does not match","danger")
+            
             return redirect("/register")
     return render_template("register.html")
 
