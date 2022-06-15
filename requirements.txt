@@ -6,6 +6,6 @@ gunicorn==20.0.4
 itsdangerous==1.1.0
 Jinja2==2.10.3
 MarkupSafe==1.1.1
-sqlite3==3
+sqlite3==3.34
 Werkzeug==0.16.1
 wincertstore==0.2
