@@ -49,7 +49,7 @@ def register():
         cPW = request.form['Cpassword']
         Uemail = request.form['EmalUser']
         if dPW == cPW:
-            sqlconnection = sqlite3.Connection(currentlocation +"\Login.db")
+            sqlconnection = sqlite3.Connection("Login.db")
             cursor = sqlconnection.cursor()
             query1 = "INSERT INTO Users VALUES('{n}','{u}','{p}','{cp}','{e}')".format(n = dN, u = dUN, p = dPW, cp = cPW, e = Uemail)
             cursor.execute(query1)
