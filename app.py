@@ -1,5 +1,4 @@
-from flask import Flask, request,render_template,redirect, url_for, session,logging
-import os
+from flask import Flask, request,render_template,redirect
 import sqlite3
 
 app = Flask(__name__)
@@ -20,7 +19,7 @@ def login():
     rows = cursor.execute(query1)
     rows = rows.fetchall()
     if len(rows) == 1:
-        session["log"] = True
+        
         return render_template("home.html")
     else:
         return redirect("/register")
@@ -35,7 +34,6 @@ def photo():
 
 @app.route("/logout")
 def logout():
-    session.clear()
     
     return redirect("/")
 
@@ -54,7 +52,7 @@ def register():
             query1 = "INSERT INTO Users VALUES('{n}','{u}','{p}','{cp}','{e}')".format(n = dN, u = dUN, p = dPW, cp = cPW, e = Uemail)
             cursor.execute(query1)
             sqlconnection.commit()
-            session["log"] = True
+            
             
             return redirect("/")
         else:
