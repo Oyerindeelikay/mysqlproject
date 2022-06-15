@@ -4,13 +4,13 @@ import sqlite3
 
 currentlocation = os.path.dirname(os.path.abspath(__file__))
 
-myapp = Flask(__name__)
+app = Flask(__name__)
 
-@myapp.route("/")
+@app.route("/")
 def loggingin():
     return render_template("login.html")
 
-@myapp.route("/", methods = ["POST"])
+@app.route("/", methods = ["POST"])
 def login():
     UN = request.form['Username']
     PW = request.form['Password']
@@ -29,22 +29,22 @@ def login():
         flash("Not Registered or Incorrect Password","danger")
         return redirect("/register")
 
-@myapp.route("/home")
+@app.route("/home")
 def home():
     return render_template("home.html")
 
-@myapp.route("/photo",methods = ["GET"])
+@app.route("/photo",methods = ["GET"])
 def photo():
     return render_template("photo.html")
 
-@myapp.route("/logout")
+@app.route("/logout")
 def logout():
     session.clear()
     flash("You are now logged out", "success")
     return redirect("/")
 
 
-@myapp.route("/register", methods= ["GET", "POST"])
+@app.route("/register", methods= ["GET", "POST"])
 def register():
     if request.method == "POST":
         dN = request.form['Dname']
@@ -66,7 +66,7 @@ def register():
             return redirect("/register")
     return render_template("register.html")
 
-@myapp.route("/flag")
+@app.route("/flag")
 def flagsample():
     from flag import flag
     flag()
@@ -74,5 +74,5 @@ def flagsample():
     return render_template("flag.html")
 
 if __name__=="__main__":
-    myapp.secret_key="1234567dailywebcoding"
-    myapp.run()
+    app.secret_key="1234567dailywebcoding"
+    app.run()
