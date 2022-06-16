@@ -21,10 +21,10 @@ def login():
     rows = rows.fetchall()
     if len(rows) == 1:
         flash("You Successfully Logged in","success")
-        return redirect(url_for('home'))
+        return redirect('/home')
     else:
         
-        return redirect(url_for('register'))
+        return render_template("register.html")
 
 @app.route("/home")
 def home():
