@@ -34,22 +34,10 @@
         <li class="nav-item">
           <a class="nav-link" href="/">Login</a>
         </li>
-        
-        
-        
+      
       </ul>
     </div>
   </nav>
-  {% block content %}
-    {% with messages = get_flashed_messages() %}
-        {% if messages %}
-            <ul class=flash style="list-style-type: none;">
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
-      {% endwith %}
   {% block body%}
   {% endblock %}
 </body>
