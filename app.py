@@ -23,7 +23,7 @@ def login():
         flash("You Successfully Logged in","success")
         return redirect(url_for('home'))
     else:
-        flash("Not Registered","danger")
+        
         return redirect(url_for('register'))
 
 @app.route("/home")
