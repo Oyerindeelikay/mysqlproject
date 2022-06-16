@@ -69,4 +69,5 @@ def flagsample():
     return render_template("flag.html")
 
 if __name__=="__main__":
+    app.secret_key="1234567dailywebcoding"
     app.run()
