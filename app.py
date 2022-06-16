@@ -20,10 +20,10 @@ def login():
     rows = cursor.execute(query1)
     rows = rows.fetchall()
     if len(rows) == 1:
-        flash("You Successfully Logged in")
+        flash("You Successfully Logged in","success")
         return redirect (url_for('home'))
     else:
-        flash("You Successfully Logged in")
+        flash("You Successfully Logged in","success")
         return redirect(url_for("register"))
 
 @app.route("/home")
