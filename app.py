@@ -20,10 +20,10 @@ def login():
     rows = cursor.execute(query1)
     rows = rows.fetchall()
     if len(rows) == 1:
-        flash("You Successfully Logged in","success")
+        flash("You Successfully Logged in")
         return redirect (url_for('home'))
     else:
-        flash("You Successfully Logged in","success")
+        flash("You Successfully Logged in")
         return redirect(url_for("register"))
 
 @app.route("/home")
@@ -36,7 +36,7 @@ def photo():
 
 @app.route("/logout")
 def logout():
-    flash("Successfully Logged Out","success")
+    flash("Successfully Logged Out")
     return redirect(url_for('login'))
 
 
@@ -54,10 +54,10 @@ def register():
             query1 = "INSERT INTO Users VALUES('{n}','{u}','{p}','{cp}','{e}')".format(n = dN, u = dUN, p = dPW, cp = cPW, e = Uemail)
             cursor.execute(query1)
             sqlconnection.commit()
-            ("Successfully Registered","success")
+            ("Successfully Registered")
             return redirect(url_for('login'))
         else:
-            flash("Password does not match","danger")
+            flash("Password does not match")
             return redirect(url_for('register'))
     return render_template("register.html")
 
